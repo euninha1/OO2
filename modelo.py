@@ -40,15 +40,18 @@ class Serie(Programa):
 
 
 
-class Playlist:
+class Playlist(list):
     def __init__(self, nome, programas):
         self.nome = nome
-        self.programas = programas
+        self._programas = programas
 
+    @property
+    def listagem(self):
+        return self._programas
 
+    @property
     def tamanho(self):
-        return len(self.programas)
-
+        return len(self._programas)
 
 vingadores = Filme('vingadores - guerra infinita', 2018, 160)
 atlanta = Serie('atlanta', 2018, 2)
@@ -75,8 +78,7 @@ filmes_e_series = [atlanta, vingadores, demolidor, tmep]
 playlist_fds = Playlist('fim de semana', filmes_e_series)
 
 
-for programa in filmes_e_series:
+for programa in playlist_fds.listagem:
     print(programa)
 
-
-
+print(f'Tamanho: {len(playlist_fds._programas)}')
